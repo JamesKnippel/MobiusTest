@@ -1,28 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const db = require('../db/db');
-const morgan = require('morgan');
+const express =  require('express');
+const bodyparser = require('body-parser');
+const morgan = require('morgan')
+const router = require('../nodeserver/router/credit.router')
 const path = require('path');
 
-// server setup
 const app = express();
-const port = '1337';
+const port = 1337
+const ip = 'localhost'
 
-// middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded)({ extended: true});
-app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, '../dist')))
+    .use(bodyparser.json())
+    .use(bodyparser.urlencoded({extended: true}))
+    .use(morgan('dev'))
+    .use('/api', router)
 
-// static serve
-app.use(express.static(path.join(__dirname, '/../dist')));
-
-// routing
-app.use( 'api/v1', router);
-
-app.listen(port, 'localhost', () => {
-  console.log(`successful connection to ${port}`)
+app.listen(port, ip, ()=>{
+    console.log(`succesful connection to ${port}`)
 })
-
-
-
-

@@ -24,5 +24,38 @@ module.exports = {
     .catch((err) => {
       return console.log(err);
     })
+  },
+
+  subtractCredits: function (req, res) {
+    db.User.findOne({
+      where : {
+        email: req.params.email,
+      }
+    })
+    .then((user) => {
+      user.decrement('num_credits', {by: req.body.num_credits})
+      user.reload();
+      res.status(201).send(user);
+    })
+    .catch((err) => {
+      return console.log(err);
+    })
+  },
+
+  addCredits: function (req, res) {
+    db.User.findOne({
+      where : {
+        email: req.params.email,
+      }
+    })
+    .then((user) => {
+      user.increment('num_credits', {by: req.body.num_credits})
+      user.reload();
+      res.status(201).send(user);
+    })
+    .catch((err) => {
+      return console.log(err);
+    })
   }
+  
 }

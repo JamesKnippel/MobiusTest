@@ -16,8 +16,6 @@ export class AuthDialogComponent implements OnInit {
   }
 
   onLoginFormResult(e) {
-
-
     if (e.signedIn) {
       this.closeDialog();
     } else {

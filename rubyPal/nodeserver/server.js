@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '../dist')))
     .use(bodyparser.json())
     .use(bodyparser.urlencoded({extended: true}))
     .use(morgan('dev'))
-    .use('/api', router)
+    .use('/api/v1', router)
 
 app.listen(port, ip, ()=>{
     console.log(`succesful connection to ${port}`)

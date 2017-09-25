@@ -14,46 +14,50 @@ export class PaymentService {
   private _observerBalanceChange: Observer<any>;
   private _observerListChange: Observer<any>;
   constructor(private http: HttpClient) {
-  // Declare observables so that other components can subscribe to data changes
-    this.userBalanceChange$ = new Observable ((observer) => {
+    // Declare observables so that other components can subscribe to data changes
+    this.userBalanceChange$ = new Observable((observer) => {
       this._observerBalanceChange = observer;
     })
-    .share();
+      .share();
 
-    this.userListChange$ = new Observable ((observer) => {
+    this.userListChange$ = new Observable((observer) => {
       this._observerListChange = observer;
     })
-    .share();
+      .share();
   }
 
-  // addCredits(email: string) {
-  //   this.http.post(`/api/v1/users/${email}`, {
+  addCredits(email: string, amount) {
+    this.http.post(`/api/v1/users/add/${email}`, {num_credits: amount})
+      .subscribe((result) => {
+        console.log(result, 'result of credit add');
+      });
+  }
 
-  //   })
-  // }
+  subtractCredits(email: string, amount) {
+    this.http.post(`/api/v1/users/subtract/${email}`, {num_credits: amount})
+      .subscribe((result) => {
+        console.log(result, 'result of credit subtraction');
+      });
+  }
 
-  // subtractCredits(email: string) {
-
-  // }
-
-    getUsers() {
-      this.http.get('/api/v1/users')
+  getUsers() {
+    this.http.get('/api/v1/users')
       .subscribe((data: any) => {
         this.users = data;
         this._observerListChange.next(data);
       });
-    }
+  }
 
-    getUser(email: string) {
-      this.http.get(`/api/v1/users/${email}`)
-        .subscribe((data: any) => {
-          this.loggedInUser = data;
-          console.log('server side, this is logged in', this.loggedInUser)
-          // this._observerBalanceChange.next(data);
-        });
-    }
+  getUser(email: string) {
+    this.http.get(`/api/v1/users/${email}`)
+      .subscribe((data: any) => {
+        this.loggedInUser = data;
+        console.log('server side, this is logged in', this.loggedInUser)
+        // this._observerBalanceChange.next(data);
+      });
+  }
 
-    currentUsers(): any {
-      return this.users;
-    }
+  currentUsers(): any {
+    return this.users;
+  }
 }

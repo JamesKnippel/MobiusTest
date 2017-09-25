@@ -27,13 +27,15 @@ module.exports = {
   },
 
   subtractCredits: function (req, res) {
+    console.log(req.body, 'body');
+    console.log('params:', req.params);
     db.User.findOne({
       where : {
         email: req.params.email,
       }
     })
     .then((user) => {
-      user.decrement('num_credits', {by: req.body.num_credits})
+      user.decrement('num_credits', {by: +req.body.num_credits})
       user.reload();
       res.status(201).send(user);
     })
@@ -43,13 +45,16 @@ module.exports = {
   },
 
   addCredits: function (req, res) {
+    console.log(req.body, 'body');
+    console.log('params:', req.params);
+    console.log('req.query', req.query);
     db.User.findOne({
       where : {
         email: req.params.email,
       }
     })
     .then((user) => {
-      user.increment('num_credits', {by: req.body.num_credits})
+      user.increment('num_credits', {by: +req.body.num_credits})
       user.reload();
       res.status(201).send(user);
     })

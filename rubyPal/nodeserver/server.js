@@ -14,8 +14,8 @@ app
   .use(bodyparser.urlencoded({ extended: false }))
   .use(morgan('dev'))
   .use('/api/v1', router)
-  app.use(express.static(path.join(__dirname, '/../dist')));
-  app.use(fallback(__dirname + '../src/app/app-routing.module.ts'));
+app.use(express.static(path.join(__dirname, '/../dist')));
+app.use(fallback(__dirname + '../src/app/app-routing.module.ts'));
 
 
 

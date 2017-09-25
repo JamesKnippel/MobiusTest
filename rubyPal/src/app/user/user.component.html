@@ -17,18 +17,27 @@
             <ul class="collection grey-text text-darken-2">
               <li class="collection-item">Email: <b>{{user.email}}</b></li>
               <li class="collection-item">Name: <b>{{user.num_credits}}</b></li>
-              <!-- <li class="collection-item"> Credits <b> {{authTokenService.currentUserData.balance}}</b></li> -->
             </ul>
           </div>
         </div>
 
       </div>
-
+      
       <div class="card-action clearfix">
-
-        <button (click)="send()" class="btn btn-block deep-orange darken-1 white-text waves-effect waves-light right">
+        
+        <div class="input-field col s12">
+          <input id="email"
+          type="amount"
+          required
+          name='amount'
+          [(ngModel)]='amount'
+          class="validate">
+          <label for="amount">Amount: {{ amount }}</label>
+        </div>
+        
+        <button (click)="sendTransaction()" class="btn btn-block deep-orange darken-1 white-text waves-effect waves-light right">
                 SEND
-              </button>
+        </button>
 
       </div>
 

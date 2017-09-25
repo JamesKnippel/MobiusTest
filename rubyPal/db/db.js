@@ -19,9 +19,19 @@ const User = db.define('user', {
   email: sequelize.STRING
 });
 
+const Transactions = db.define('transactions', {
+  sender: sequelize.STRING,
+  receiver: sequelize.STRING,
+  value: sequelize.INTEGER
+})
+
 User.sync()
-.then(() => console.log('user mounted'));
+.then(() => console.log('user table mounted'));
+
+Transactions.sync()
+.then(() => console.log('transaction table mounted'));
 
 module.exports = {
-  User
+  User,
+  Transactions
 }

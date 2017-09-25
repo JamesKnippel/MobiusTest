@@ -13,6 +13,27 @@ module.exports = {
     })
   },
 
+  addTransaction: function (req, res) {
+    db.Transactions.create({
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+        value: req.body.value
+    })
+    .then((data) => {
+      res.status(201).send(data);
+    })
+  },
+
+  getAllTransactions: function (req, res) {
+    db.Transactions.findAll({})
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      return console.log(err);
+    })
+  },
+
   findUser: function (req, res) {
     db.User.findOne({
       where: {

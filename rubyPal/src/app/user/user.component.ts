@@ -2,13 +2,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { User } from '../models/users/user.interface';
 import { PaymentService } from '../services/payment.service';
 import { Angular2TokenService } from 'angular2-token';
+import { OnSendTransactionEvent } from '../models/transactions/transactions.interface';
 
 /* we'll be sending this data to our feed */
-export interface OnSendTransactionEvent {
-  sender: string;
-  receiver: string;
-  value: number;
-}
 
 @Component({
   selector: 'app-user',
@@ -22,8 +18,8 @@ export class UserComponent implements OnInit {
 
   @Input() user: User;
 
-  @Output()
-  public onSendTransaction: EventEmitter<OnSendTransactionEvent> = new EventEmitter<OnSendTransactionEvent>();
+  // @Output()
+  // public onSendTransaction: EventEmitter<OnSendTransactionEvent> = new EventEmitter<OnSendTransactionEvent>();
 
   constructor(private paymentService: PaymentService,
               private authTokenService: Angular2TokenService) { }
@@ -32,12 +28,8 @@ export class UserComponent implements OnInit {
     /* calls our payment service to update the database */
     await this.paymentService.addCredits(this.user.email, this.amount);
     this.paymentService.subtractCredits(this.authTokenService.currentUserData.email, this.amount);
-    /* event to tell our feed there's a need to add a row */
-    this.onSendTransaction.emit({
-      sender: this.authTokenService.currentUserData.email,
-      receiver: this.user.email,
-      value: this.amount
-    });
+    // /* event to tell our feed there's a need to add a row */
+    this.paymentService.addTransaction(this.authTokenService.currentUserData.email, this.user.email, this.amount);
   }
 
   ngOnInit() {

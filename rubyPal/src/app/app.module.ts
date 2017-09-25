@@ -21,6 +21,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
+import { TransactionIndividualComponent } from './transaction-individual/transaction-individual.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserComponent } from './user/user.component';
     RegisterFormComponent,
     AuthDialogComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    TransactionIndividualComponent
   ],
   imports: [
     BrowserModule,

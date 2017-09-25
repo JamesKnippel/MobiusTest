@@ -9,11 +9,16 @@ Welcome!
 
 2) Run the Ruby Backend 
 
-    `from /Mobius` 
+```
+    from /Mobius 
 
-    `cd rubyPalApi`
+    cd rubyPalApi`
 
-    `rails s`
+    bundle install
+
+    rails s
+
+ ```
 
 3) Run the front end 
   ``` from /rubyPalApi  

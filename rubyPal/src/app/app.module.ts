@@ -41,7 +41,7 @@ import { UserComponent } from './user/user.component';
     MaterializeModule,
     HttpModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [ Angular2TokenService, AuthService, AuthGuard, PaymentService ],
   bootstrap: [AppComponent]

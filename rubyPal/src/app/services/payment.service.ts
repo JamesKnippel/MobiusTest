@@ -8,6 +8,7 @@ import { User } from '../models/users/user.interface';
 @Injectable()
 export class PaymentService {
   users: User[];
+  loggedInUser: any;
   userBalanceChange$: Observable<any>;
   userListChange$: Observable<any>;
   private _observerBalanceChange: Observer<any>;
@@ -41,6 +42,15 @@ export class PaymentService {
         this.users = data;
         this._observerListChange.next(data);
       });
+    }
+
+    getUser(email: string) {
+      this.http.get(`/api/v1/users/${email}`)
+        .subscribe((data: any) => {
+          this.loggedInUser = data;
+          console.log('server side, this is logged in', this.loggedInUser)
+          // this._observerBalanceChange.next(data);
+        });
     }
 
     currentUsers(): any {

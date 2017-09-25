@@ -56,6 +56,16 @@ module.exports = {
     .catch((err) => {
       return console.log(err);
     })
+  },
+
+  getAllUsers: function (req, res) {
+    db.User.findAll({})
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      return console.log(err);
+    })
   }
   
 }

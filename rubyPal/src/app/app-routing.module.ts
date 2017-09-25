@@ -17,21 +17,16 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        children: [
-          {
-            path: 'transactions',
-            component: TransactionsComponent
-          },
-          {
-            path: 'users',
-            component: UserListComponent
-          },
-        ]
-      }
-    ]
+  },
+  {
+    path: 'transactions',
+    component: TransactionsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuard],
   },
   /* wildcard */
   {

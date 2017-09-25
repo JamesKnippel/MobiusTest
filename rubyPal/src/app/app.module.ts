@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
 import { RouterModule, Routes } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
+import { PaymentService } from './services/payment.service';
 import { AuthService } from './services/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,9 +40,10 @@ import { UserComponent } from './user/user.component';
     AppRoutingModule,
     MaterializeModule,
     HttpModule,
+    HttpClientModule,
     FormsModule
   ],
-  providers: [ Angular2TokenService, AuthService, AuthGuard ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard, PaymentService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

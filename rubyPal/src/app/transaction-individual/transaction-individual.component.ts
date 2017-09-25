@@ -9,6 +9,7 @@ import { OnSendTransactionEvent } from '../models/transactions/transactions.inte
 export class TransactionIndividualComponent implements OnInit {
 
   @Input() transaction: OnSendTransactionEvent;
+  
   constructor() { }
 
   ngOnInit() {

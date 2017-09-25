@@ -1,12 +1,16 @@
-<table class="responsive-table">
-  <tr>
-    <th>Sender</th>
-    <th>Receiver</th>
-    <th>Amount Sent</th>
-  </tr>
-  <tr>
-    <td>{{ transaction.sender }}</td>
-    <td>{{ transaction.receiver }}</td>
-    <td>{{ transaction.value }}</td>
-  </tr>
+<table class="responsive-table striped centered">
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Receiver</th>
+      <th>Amount Sent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ transaction.sender }}</td>
+      <td>{{ transaction.receiver }}</td>
+      <td>{{ transaction.value }}</td>
+    </tr>
+  </tbody>
 </table>

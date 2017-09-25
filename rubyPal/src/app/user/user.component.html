@@ -25,6 +25,7 @@
       
       <div class="card-action clearfix">
         
+        <label for="amount">Amount</label>
         <div class="input-field col s12">
           <input id="email"
           type="amount"
@@ -32,7 +33,6 @@
           name='amount'
           [(ngModel)]='amount'
           class="validate">
-          <label for="amount">Amount: {{ amount }}</label>
         </div>
         
         <button (click)="sendTransaction()" class="btn btn-block deep-orange darken-1 white-text waves-effect waves-light right">

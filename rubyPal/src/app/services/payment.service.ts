@@ -50,8 +50,8 @@ export class PaymentService {
     this.http.get('/api/v1/transactions')
     .subscribe((data: any) => {
       this.transactions = data;
-      this._observerSentTransactionChange.next(data);
       console.log(data, 'result of transaction add');
+      this._observerSentTransactionChange.next(data);
     });
   }
 
@@ -88,5 +88,9 @@ export class PaymentService {
 
   currentUsers(): any {
     return this.users;
+  }
+
+  currentTransactions(): any {
+    return this.transactions;
   }
 }

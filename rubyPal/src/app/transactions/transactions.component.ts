@@ -16,14 +16,16 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   constructor(private paymentService: PaymentService) { }
 
   listTransactions() {
-    this.subscription = this.paymentService.userListChange$.subscribe( transactionList => {
+    this.subscription = this.paymentService.sentTransactionChange$.subscribe(transactionList => {
       this.transactions = transactionList;
     });
   }
 
   ngOnInit() {
     this.paymentService.getTransactions();
+    this.transactions = this.paymentService.currentTransactions();
     this.listTransactions();
+    console.log(this.transactions, 'transactions in component');
   }
 
   ngOnDestroy() {
